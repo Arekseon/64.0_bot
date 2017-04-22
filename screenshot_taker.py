@@ -2,7 +2,9 @@ import Quartz, time
 import LaunchServices
 from Cocoa import NSURL
 import Quartz.CoreGraphics as CG
-
+global counter
+counter = 0
+FILE_NAME = "screenshot_name.jpg"
 
 def screenshot(path, region = None):
     """region should be a CGRect, something like:
@@ -50,10 +52,18 @@ def screenshot(path, region = None):
     Quartz.CGImageDestinationFinalize(dest)
 
 def make_screenshot():
+    global counter
     region = CG.CGRectMake(28, 46, 640, 640)
-    screenshot("screenshot_name.png", region=region)
-    return "screenshot_name.png"
+    screenshot(FILE_NAME, region=region)
+    save_screenshot(counter)
+    counter+=1
+    return FILE_NAME
     
+def save_screenshot(number):
+    region = CG.CGRectMake(28, 46, 640, 640)
+    screenshot("testscreenshot_partial"+str(number)+".png", region=region)
+    # time.sleep(0.2)
+
 
 
 if __name__ == '__main__':
