@@ -54,10 +54,11 @@ def screenshot(path, region = None):
 def make_screenshot():
     global counter
     region = CG.CGRectMake(28, 46, 640, 640)
+    screenshot_time = time.time()
     screenshot(FILE_NAME, region=region)
-    save_screenshot(counter)
+    # save_screenshot(counter)
     counter+=1
-    return FILE_NAME
+    return FILE_NAME, screenshot_time
     
 def save_screenshot(number):
     region = CG.CGRectMake(28, 46, 640, 640)
